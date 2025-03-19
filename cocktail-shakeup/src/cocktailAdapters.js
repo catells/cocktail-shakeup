@@ -66,3 +66,35 @@ export const getRandomCocktail = async (ingredient = "", alcoholic = null, categ
 
     return [getDrinkData(data.drinks[0]), null];
 }
+
+export const getFilters = async () => {
+    const [categoriesData, categoriesError] = await handleFetch(baseUrl + `lookup.php?i=`);
+    const [ingredientsData, ingredientError] = await handleFetch();
+    const [alcoholicData, alcoholicError] = await handleFetch();
+
+    if (categoriesError || ingredientError || alcoholicError) {
+        const errors = [];
+        if (categoriesError) {
+            console.error(categoriesError);
+            errors.push(categoriesError);
+        }
+
+        if (ingredientError) {
+            console.error(ingredientError);
+            errors.push(ingredientError);
+        }
+
+        if (alcoholicError) {
+            console.error(alcoholicError);
+            errors.push(alcoholicError);
+        }
+
+        return [null, errors];
+    }
+
+    const categories = categoriesData.drinks.map(c => c.strCategory);
+    const ingredients = ingredientsData.drinks.map(c => c.strIngredient1);
+    const alcoholic = alcoholicData.drinks.map(c => c.strAlcoholic);
+
+    return [{categories, ingredients, alcoholic}, null];
+}

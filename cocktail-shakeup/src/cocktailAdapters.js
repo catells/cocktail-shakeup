@@ -7,13 +7,7 @@ const getDrinkData = (drinkData) => {
       drink: drinkData.strDrink,
       alcoholic: drinkData.strAlcoholic,
       glass: drinkData.strGlass,
-      instructions: {
-        en: drinkData.strInstructions,
-        es: drinkData.strInstructionsES,
-        de: drinkData.strInstructionsDE,
-        fr: drinkData.strInstructionsFR,
-        it: drinkData.strInstructionsIT
-      },
+      instructions: drinkData.strInstructions,
       thumb: drinkData.strDrinkThumb,
       ingredients: Array.from({length: 15}, (c, i) => drinkData[`strIngredient${i + 1}`]).filter(Boolean),
       measurements: Array.from({length: 15}, (c, i) => drinkData[`strMeasurement${i + 1}`]).filter(Boolean),

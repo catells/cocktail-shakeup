@@ -25,10 +25,10 @@ export const getCocktailById = async (id) => {
     return [getDrinkData(data.drinks[0]), null];
 }
 
-export const getRandomCocktail = async (ingredient = "", alcoholic = null, category = "") => {
+export const getRandomCocktail = async (ingredient = "", alcoholic = "", category = "") => {
     let url = baseUrl + 'random.php';
 
-    if (ingredient !== "" && alcoholic === false) {
+    if (ingredient !== "" && alcoholic === "Non alcoholic") {
         const [d, e] = await handleFetch(url);
 
         if (e) {
@@ -36,19 +36,20 @@ export const getRandomCocktail = async (ingredient = "", alcoholic = null, categ
             return [null, e];
         }
 
-        if (d.ingredients[0].strAlcohol !== "No") console.warn(`${ingredient} contains alcohol!`);
+        if (d.ingredients[0].strAlcohol === "Alcoholic") console.warn(`${ingredient} contains alcohol!`);
     }
     
 
-    if (ingredient !== "" || alcoholic !== null || category !== "") {
+    if (ingredient !== "" || alcoholic !== "" || category !== "") {
         url = baseUrl + '/filter.php?';
 
         const queryParams = [];
 
         if (ingredient !== "") queryParams.push(`i=${ingredient}`);
 
-        if (alcoholic) queryParams.push('a=Alcoholic');
-        else if (alcoholic === false) queryParams.push('a=Non_Alcoholic');
+        if (alcoholic === "Alcoholic") queryParams.push('a=Alcoholic');
+        else if (alcoholic === "Non alcoholic") queryParams.push('a=Non_Alcoholic');
+        else if (alcoholic === "Optional alcohol") queryParams.push('a=Optional_Alcohol')
 
         if (category !== "") queryParams.push(`c=${category}`);
 

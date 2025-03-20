@@ -68,9 +68,9 @@ export const getRandomCocktail = async (ingredient = "", alcoholic = null, categ
 }
 
 export const getFilters = async () => {
-    const [categoriesData, categoriesError] = await handleFetch(baseUrl + `lookup.php?i=`);
-    const [ingredientsData, ingredientError] = await handleFetch();
-    const [alcoholicData, alcoholicError] = await handleFetch();
+    const [categoriesData, categoriesError] = await handleFetch(baseUrl + 'list.php?c=list');
+    const [ingredientsData, ingredientError] = await handleFetch(baseUrl + 'list.php?i=list');
+    const [alcoholicData, alcoholicError] = await handleFetch(baseUrl + 'list.php?a=list');
 
     if (categoriesError || ingredientError || alcoholicError) {
         const errors = [];

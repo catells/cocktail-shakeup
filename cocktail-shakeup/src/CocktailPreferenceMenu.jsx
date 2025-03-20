@@ -1,31 +1,8 @@
-import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
-import getFilters from './cocktailAdapters.js';
+import { useContext } from 'react';
+import { CocktailPreferencesMenuContext } from './CocktailPreferenceMenuProvider'; 
 
-export const CocktailPreferenceMenu = ({ setCocktailCategory, setCocktailIngredient, setCocktailAlcoholic }) => {
-    const [filters, setFilters] = useState(null);
-    const [errors, setErrors] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchFiltersData = async() => {
-            const [filtersData, filtersErrors] = await getFilters();
-
-            if (filtersErrors && filtersErrors.length > 0) setErrors(filtersErrors);
-            else setFilters(filtersData);
-
-            setLoading(false);
-        }
-
-        fetchFiltersData();
-    }, []);
-
-    if (loading) return <div>Loading filters</div>;
-
-    if (errors.length > 0) {
-        console.error(errors);
-        return <div>Error loading filters...</div>;
-    }
+export const CocktailPreferenceMenu = () => {
+    const [filters, setCocktailCategory, setCocktailIngredient, setAlcoholic] = useContext(CocktailPreferencesMenuContext);
 
     return (
         <div>
@@ -45,7 +22,7 @@ export const CocktailPreferenceMenu = ({ setCocktailCategory, setCocktailIngredi
                 ))}
             </select>
 
-            <select onChange={e => setCocktailAlcoholic(e.target.value)}>
+            <select onChange={e => setAlcoholic(e.target.value)}>
                 {filters.alcoholic.map(c => (
                     <option key={ c } value={ c }>
                     { c }
@@ -54,10 +31,4 @@ export const CocktailPreferenceMenu = ({ setCocktailCategory, setCocktailIngredi
             </select>
         </div>
     )
-}
-
-CocktailPreferenceMenu.propTypes = {
-    setCocktailCategory: PropTypes.func.isRequired,
-    setCocktailIngredient: PropTypes.func.isRequired,
-    setCocktailAlcoholic: PropTypes.func.isRequired
 }

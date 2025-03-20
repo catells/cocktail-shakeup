@@ -6,7 +6,8 @@ const CocktailPreferencesMenuContext = createContext();
 export const CocktailPreferencesMenuProvider = () => {
     const [cocktailCategory, setCocktailCategory] = useState("");
     const [cocktailIngredient, setCocktailIngredient] = useState("");
-    const [alcoholic, setAlcoholic] = useState(null);
+    const [alcoholic, setAlcoholic] = useState("");
+    const [glass, setGlass] = useState("");
 
     const [filters, setFilters] = useState(null);
     const [errors, setErrors] = useState([]);
@@ -25,7 +26,7 @@ export const CocktailPreferencesMenuProvider = () => {
         fetchFiltersData();
     }, []);
 
-    if (loading) return <div>Loading filters</div>;
+    if (loading) return <div>Loading filters...</div>;
 
     if (errors.length > 0) {
         console.error(errors);
@@ -34,9 +35,14 @@ export const CocktailPreferencesMenuProvider = () => {
 
     return (
         <CocktailPreferencesMenuContext.Provider value={{
+            cocktailCategory,
             setCocktailCategory,
+            cocktailIngredient,
             setCocktailIngredient,
+            alcoholic,
             setAlcoholic,
+            glass,
+            setGlass,
             filters
         }}>
         </CocktailPreferencesMenuContext.Provider>

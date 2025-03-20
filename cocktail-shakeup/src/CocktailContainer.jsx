@@ -1,32 +1,62 @@
-import { useState, useEffect } from 'react';
-import setFilters from './cocktailAdapters.js';
+import { CocktailPreferencesMenuContext } from './CocktailPreferenceMenuProvider';
+import { CocktailPreferenceMenu } from './CocktailPreferenceMenu'; 
+import { useState, useEffect, useContext } from 'react';
+import { getRandomCocktail } from 'cocktailAdapters.js';
 
 export const CocktailContainer = () => {
-    const [cocktailCategory, setCocktailCategory] = "";
-    const [cocktailIngredient, setCocktailIngredient] = "";
-    const [cocktailAlcholic, setCocktailAlcoholic] = null;
-
-    const [filters, setFilters] = useState(null);
-    const [errors, setErrors] = useState([]);
+    const [cocktailCategory, cocktailIngredient, alcoholic, glass] = useContext();
+    const [cocktail, setCocktail] = useState({});
+    const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchFiltersData = async() => {
-            const [filtersData, filtersErrors] = await getFilters();
+        const fetchRandomCocktailData = async () => {
+            const [cocktailData, cocktailError] = await getRandomCocktail();
 
-            if (filtersErrors && filtersErrors.length > 0) setErrors(filtersErrors);
-            else setFilters(filtersData);
+            if (cocktailError !== "") setError(cocktailError);
+            else setCocktail(cocktailData);
 
             setLoading(false);
         }
 
-        fetchFiltersData();
+        fetchRandomCocktailData();
     }, []);
 
-    if (loading) return <div>Loading filters</div>;
+    useEffect(() => {
+        const fetchRandomCocktailData = async () => {
+            const [cocktailData, cocktailError] = await getRandomCocktail(cocktailCategory, cocktailIngredient, alcoholic);
 
-    if (errors.length > 0) {
-        console.error(errors);
-        return <div>Error loading filters...</div>;
+            if (cocktailError !== "") setError(cocktailError);
+            else setCocktail(cocktailData);
+
+            setLoading(false);
+        }
+
+        fetchRandomCocktailData();
+    }, [cocktailCategory, cocktailIngredient, alcoholic, glass]);
+
+    if (loading) return <div>Loading filters...</div>;
+
+    if (error) {
+        console.error(error);
+        return <div>Error loading cocktail...</div>
     }
+
+    if (cocktail == {}) return <div>No cocktail found that matches preferences...</div>;
+
+    return (
+        <div>
+            <h2>{ cocktail.drink }</h2>
+            <img src={cocktail.thumb} alt={`Image of ${cocktail.drink}`} />
+            <h4>Category: {cocktail.category}</h4>
+            <h4>Alcohol Level: {cocktail.alcoholic}</h4>
+            <h4>Glass: { cocktail.glass }</h4>
+            <h3>Ingredients</h3>
+            <ul>
+                { cocktail.ingredients.map((c, i) => <li>{c} {cocktail.measurements[i]}</li>) }
+            </ul>
+            <h3>Instructions</h3>
+            <p>{cocktail.instructions}</p>
+        </div>
+    )
 }

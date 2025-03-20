@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext } from 'react';
 import getFilters from './cocktailAdapters.js';
+import CocktailContainer from 'CocktailContainer.jsx';
 
 const CocktailPreferencesMenuContext = createContext();
 
@@ -45,6 +46,7 @@ export const CocktailPreferencesMenuProvider = () => {
             setGlass,
             filters
         }}>
+            <CocktailContainer />
         </CocktailPreferencesMenuContext.Provider>
     );
 }

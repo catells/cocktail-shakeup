@@ -7,6 +7,7 @@ export const CocktailContainer = () => {
     const [cocktailCategory, cocktailIngredient, alcoholic, glass] = useContext();
     const [cocktail, setCocktail] = useState({});
     const [error, setError] = useState("");
+    const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -57,6 +58,11 @@ export const CocktailContainer = () => {
             </ul>
             <h3>Instructions</h3>
             <p>{cocktail.instructions}</p>
+            <button onClick={ setOpen(!open) }>{open ? "Hide Preferences" : "Show Preferences"}</button>
+            <div style={{maxHeight: open ? '500px' : '0px'}, {overflow: open ? 'auto' : 'hidden'}}>
+                <CocktailPreferenceMenu />
+            </div>
+            <button>Not feeling it? Mix it up!</button>
         </div>
     )
 }

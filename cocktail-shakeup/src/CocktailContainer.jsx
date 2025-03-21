@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from 'react';
 import { getRandomCocktail } from 'cocktailAdapters.js';
 
 export const CocktailContainer = () => {
-    const [cocktailCategory, cocktailIngredient, alcoholic, glass] = useContext();
+    const [cocktailCategory, cocktailIngredient, alcoholic, glass, shakingUp, setShakingUp] = useContext();
     const [cocktail, setCocktail] = useState({});
     const [error, setError] = useState("");
     const [open, setOpen] = useState(false);
@@ -25,7 +25,7 @@ export const CocktailContainer = () => {
 
     useEffect(() => {
         const fetchRandomCocktailData = async () => {
-            const [cocktailData, cocktailError] = await getRandomCocktail(cocktailCategory, cocktailIngredient, alcoholic);
+            const [cocktailData, cocktailError] = await getRandomCocktail(cocktailCategory, cocktailIngredient, alcoholic, glass);
 
             if (cocktailError !== "") setError(cocktailError);
             else setCocktail(cocktailData);
@@ -33,8 +33,9 @@ export const CocktailContainer = () => {
             setLoading(false);
         }
 
-        fetchRandomCocktailData();
-    }, [cocktailCategory, cocktailIngredient, alcoholic, glass]);
+        if (shakingUp) fetchRandomCocktailData();
+        setShakingUp(false);
+    }, [shakingUp, cocktailCategory, cocktailIngredient, alcoholic, glass]);
 
     if (loading) return <div>Loading filters...</div>;
 
@@ -60,9 +61,8 @@ export const CocktailContainer = () => {
             <p>{cocktail.instructions}</p>
             <button onClick={ setOpen(!open) }>{open ? "Hide Preferences" : "Show Preferences"}</button>
             <div style={{maxHeight: open ? '500px' : '0px'}, {overflow: open ? 'auto' : 'hidden'}}>
-                <CocktailPreferenceMenu />
+                <CocktailPreferenceMenu container={true}/>
             </div>
-            <button>Not feeling it? Mix it up!</button>
         </div>
     )
 }

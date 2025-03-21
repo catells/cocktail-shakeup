@@ -13,6 +13,7 @@ export const CocktailPreferencesMenuProvider = () => {
     const [filters, setFilters] = useState(null);
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [shakingUp, setShakingUp] = useState(false);
 
     useEffect(() => {
         const fetchFiltersData = async() => {
@@ -44,6 +45,8 @@ export const CocktailPreferencesMenuProvider = () => {
             setAlcoholic,
             glass,
             setGlass,
+            shakingUp,
+            setShakingUp,
             filters
         }}>
             <CocktailContainer />

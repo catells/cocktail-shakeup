@@ -1,10 +1,9 @@
 import { useState, useEffect, createContext } from 'react';
-import getFilters from './cocktailAdapters.js';
-import CocktailContainer from 'CocktailContainer.jsx';
+import { getFilters } from './cocktailAdapters.js';
 
-const CocktailPreferencesMenuContext = createContext();
+const CocktailPreferenceMenuContext = createContext();
 
-export const CocktailPreferencesMenuProvider = () => {
+const CocktailPreferenceMenuProvider = ({ children }) => {
     const [cocktailCategory, setCocktailCategory] = useState("");
     const [cocktailIngredient, setCocktailIngredient] = useState("");
     const [alcoholic, setAlcoholic] = useState("");
@@ -36,7 +35,7 @@ export const CocktailPreferencesMenuProvider = () => {
     }
 
     return (
-        <CocktailPreferencesMenuContext.Provider value={{
+        <CocktailPreferenceMenuContext.Provider value={{
             cocktailCategory,
             setCocktailCategory,
             cocktailIngredient,
@@ -49,7 +48,9 @@ export const CocktailPreferencesMenuProvider = () => {
             setShakingUp,
             filters
         }}>
-            <CocktailContainer />
-        </CocktailPreferencesMenuContext.Provider>
+            {children}
+        </CocktailPreferenceMenuContext.Provider>
     );
 }
+
+export { CocktailPreferenceMenuContext, CocktailPreferenceMenuProvider};

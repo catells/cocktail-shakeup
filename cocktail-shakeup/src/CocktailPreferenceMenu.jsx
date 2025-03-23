@@ -1,8 +1,8 @@
+import { CocktailPreferenceMenuContext } from './CocktailPreferenceMenuProvider';
 import { useContext } from 'react';
-import { CocktailPreferencesMenuContext } from './CocktailPreferenceMenuProvider'; 
 
 export const CocktailPreferenceMenu = ({container = false}) => {
-    const [filters, setCocktailCategory, setCocktailIngredient, setAlcoholic, setGlass, setShakingUp] = useContext(CocktailPreferencesMenuContext);
+    const { filters, setCocktailCategory, setCocktailIngredient, setAlcoholic, setGlass, setShakingUp } = useContext(CocktailPreferenceMenuContext);
 
     return (
         <div>
@@ -42,7 +42,7 @@ export const CocktailPreferenceMenu = ({container = false}) => {
                 ))}
             </select>
 
-            <button onclick={setShakingUp(true)}>{container ? 'Not feeling it? Shake it up!' : 'Mix it up!'}</button>
+            <button onClick={() => setShakingUp(true)}>{container ? 'Not feeling it? Shake it up!' : 'Mix it up!'}</button>
         </div>
     )
 }

@@ -11,7 +11,7 @@ const getDrinkData = (drinkData) => {
       instructions: drinkData.strInstructions,
       thumb: drinkData.strDrinkThumb,
       ingredients: Array.from({length: 15}, (c, i) => drinkData[`strIngredient${i + 1}`]).filter(Boolean),
-      measurements: Array.from({length: 15}, (c, i) => drinkData[`strMeasurement${i + 1}`]).filter(Boolean),
+      measurements: Array.from({length: 15}, (c, i) => drinkData[`strMeasure${i + 1}`]).filter(Boolean),
     }
 }
 
@@ -26,7 +26,7 @@ export const getCocktailById = async (id) => {
     return [getDrinkData(data.drinks[0]), null];
 }
 
-export const getRandomCocktail = async (ingredient = "", alcoholic = "", category = "", glass = "") => {
+export const getRandomCocktail = async (category = "", ingredient = "", alcoholic = "", glass = "") => {
     let url = baseUrl + 'random.php';
 
     if (ingredient !== "" && alcoholic === "Non alcoholic") {
@@ -50,7 +50,7 @@ export const getRandomCocktail = async (ingredient = "", alcoholic = "", categor
 
         if (alcoholic === "Alcoholic") queryParams.push('a=Alcoholic');
         else if (alcoholic === "Non alcoholic") queryParams.push('a=Non_Alcoholic');
-        else if (alcoholic === "Optional alcohol") queryParams.push('a=Optional_Alcohol')
+        else if (alcoholic === "Optional alcohol") queryParams.push('a=Optional_Alcohol');
 
         if (category !== "") queryParams.push(`c=${category}`);
 

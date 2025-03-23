@@ -30,14 +30,16 @@ export const getRandomCocktail = async (category = "", ingredient = "", alcoholi
     let url = baseUrl + 'random.php';
 
     if (ingredient !== "" && alcoholic === "Non alcoholic") {
-        const [d, e] = await handleFetch(url);
+        let ingredientUrl = baseUrl + `search.php?i=`;
+
+        const [d, e] = await handleFetch(ingredientUrl + ingredient.split(' ').join('_'));
 
         if (e) {
             console.error(e);
             return [null, e];
         }
 
-        if (d.ingredients[0].strAlcohol === "Alcoholic") console.warn(`${ingredient} contains alcohol!`);
+        if (d.ingredients[0].strAlcohol === "Yes") console.warn(`${ingredient} contains alcohol!`);
     }
     
 

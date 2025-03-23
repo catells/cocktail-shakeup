@@ -2,19 +2,29 @@ import { handleFetch } from './handleFetch.js';
 
 const baseUrl = 'https://www.thecocktaildb.com/api/json/v1/1/';
 
+/**
+ * Converts data of drink fetched from TheCocktailDB's API
+ * @param {object} drinkData data from TheCocktailDB's API
+ * @returns {object} more readable object converting `ingredients` and `measurements` to arrays
+ */
 const getDrinkData = (drinkData) => {
-    return {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-      drink: drinkData.strDrink,
-      category: drinkData.strCategory,
-      alcoholic: drinkData.strAlcoholic,
-      glass: drinkData.strGlass,
-      instructions: drinkData.strInstructions,
-      thumb: drinkData.strDrinkThumb,
-      ingredients: Array.from({length: 15}, (c, i) => drinkData[`strIngredient${i + 1}`]).filter(Boolean),
-      measurements: Array.from({length: 15}, (c, i) => drinkData[`strMeasure${i + 1}`]).filter(Boolean),
+    return {
+        drink: drinkData.strDrink,
+        category: drinkData.strCategory,
+        alcoholic: drinkData.strAlcoholic,
+        glass: drinkData.strGlass,
+        instructions: drinkData.strInstructions,
+        thumb: drinkData.strDrinkThumb,
+        ingredients: Array.from({ length: 15 }, (c, i) => drinkData[`strIngredient${i + 1}`]).filter(Boolean),
+        measurements: Array.from({ length: 15 }, (c, i) => drinkData[`strMeasure${i + 1}`]).filter(Boolean),
     }
 }
 
+/**
+ * Retrieves data of a drink using its ID
+ * @param {number} id unique identifier of drink
+ * @returns data of drink of the provided ID
+ */
 export const getCocktailById = async (id) => {
     const [data, error] = await handleFetch(baseUrl + `lookup.php?i=${id}`);
 
@@ -26,6 +36,13 @@ export const getCocktailById = async (id) => {
     return [getDrinkData(data.drinks[0]), null];
 }
 
+/**
+ * A random drink that fits at least one of the optional conditions, if any
+ * @param {string} category title of category of random drink
+ * @param {string} alcoholic whether the random drink should be alcoholic
+ * @param {string} glass glass type of random drink
+ * @returns {object} data of random drink
+ */
 export const getRandomCocktail = async (category = "", alcoholic = "", glass = "") => {
     let url = baseUrl + 'random.php';
 
@@ -60,6 +77,10 @@ export const getRandomCocktail = async (category = "", alcoholic = "", glass = "
     return [getDrinkData(data.drinks[0]), null];
 }
 
+/**
+ * Retrieves filters by which drinks can be selected
+ * @returns data of category, alcholic, and glass filters 
+ */
 export const getFilters = async () => {
     const [categoriesData, categoriesError] = await handleFetch(baseUrl + 'list.php?c=list');
     const [alcoholicData, alcoholicError] = await handleFetch(baseUrl + 'list.php?a=list');

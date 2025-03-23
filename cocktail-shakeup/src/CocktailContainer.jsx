@@ -4,7 +4,7 @@ import { useState, useEffect, useContext, useRef } from 'react';
 import { getRandomCocktail } from './cocktailAdapters.js';
 
 export const CocktailContainer = () => {
-    const { cocktailCategory, cocktailIngredient, alcoholic, glass, shakingUp, setShakingUp } = useContext(CocktailPreferenceMenuContext);
+    const { cocktailCategory, alcoholic, glass, shakingUp, setShakingUp } = useContext(CocktailPreferenceMenuContext);
     const [cocktail, setCocktail] = useState(null);
     const [error, setError] = useState("");
     const [open, setOpen] = useState(false);

@@ -64,13 +64,13 @@ export const CocktailContainer = () => {
             <h4>Glass: { cocktail.glass }</h4>
             <h3>Ingredients</h3>
             <ul>
-                { cocktail.ingredients.map((c, i) => <li key={ i }>{ c } { cocktail.measurements[i] }</li>) }
+                { cocktail.ingredients.map((c, i) => <li key={ i }>{ cocktail.measurements[i] } { c }</li>) }
             </ul>
             <h3>Instructions</h3>
             <p>{cocktail.instructions}</p>
             <button onClick={ () => setOpen(!open) }>{open ? "Hide Preferences" : "Show Preferences"}</button>
             <div style={{ maxHeight: open ? '500px' : '0px', overflow: open ? 'auto' : 'hidden' }}>
-                <CocktailPreferenceMenu container={true}/>
+                <CocktailPreferenceMenu container={ true }/>
             </div>
         </div>
     )

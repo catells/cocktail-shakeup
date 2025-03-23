@@ -68,7 +68,10 @@ export const getRandomCocktail = async (category = "", ingredient = "", alcoholi
         return [null, error];
     }
 
-    if (data.drinks.length > 1) return [getDrinkData(data.drinks[Math.floor(Math.random() * data.drinks.length)]), null];
+    if (data.drinks.length > 1) {
+        const randomDrinkId = data.drinks[Math.floor(Math.random() * data.drinks.length)].idDrink;
+        return getCocktailById(randomDrinkId);
+    }
 
     return [getDrinkData(data.drinks[0]), null];
 }
@@ -109,5 +112,5 @@ export const getFilters = async () => {
     const alcoholic = alcoholicData.drinks.map(c => c.strAlcoholic);
     const glasses = glassData.drinks.map(c => c.strGlass);
 
-    return [{categories, ingredients, alcoholic, glasses}, null];
+    return [{ categories, ingredients, alcoholic, glasses }, null];
 }

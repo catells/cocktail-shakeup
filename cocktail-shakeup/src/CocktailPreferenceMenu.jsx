@@ -7,7 +7,7 @@ export const CocktailPreferenceMenu = ({container = false}) => {
     return (
         <div>
             <select onChange={e => setCocktailCategory(e.target.value)}>
-                <option>""</option>
+                <option label='Categories'>""</option>
                 {filters.categories.map(c => (
                     <option key={ c } value={ c }>
                         { c }
@@ -16,7 +16,7 @@ export const CocktailPreferenceMenu = ({container = false}) => {
             </select>
 
             <select onChange={e => setCocktailIngredient(e.target.value)}>
-                <option>""</option>
+                <option label='Ingredient'>""</option>
                 {filters.ingredients.map(c => (
                     <option key={ c } value={ c }>
                         { c }
@@ -25,7 +25,7 @@ export const CocktailPreferenceMenu = ({container = false}) => {
             </select>
 
             <select onChange={e => setAlcoholic(e.target.value)}>
-                <option>""</option>
+                <option label='Alcohol Level'>""</option>
                 {filters.alcoholic.map(c => (
                     <option key={ c } value={ c }>
                         { c }
@@ -34,7 +34,7 @@ export const CocktailPreferenceMenu = ({container = false}) => {
             </select>
 
             <select onChange={e => setGlass(e.target.value)}>
-                <option>""</option>
+                <option label='Glass'>""</option>
                 {filters.glasses.map(c => (
                     <option key={ c } value={ c }>
                         { c }

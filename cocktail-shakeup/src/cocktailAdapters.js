@@ -26,29 +26,13 @@ export const getCocktailById = async (id) => {
     return [getDrinkData(data.drinks[0]), null];
 }
 
-export const getRandomCocktail = async (category = "", ingredient = "", alcoholic = "", glass = "") => {
+export const getRandomCocktail = async (category = "", alcoholic = "", glass = "") => {
     let url = baseUrl + 'random.php';
 
-    if (ingredient !== "" && alcoholic === "Non alcoholic") {
-        let ingredientUrl = baseUrl + `search.php?i=`;
-
-        const [d, e] = await handleFetch(ingredientUrl + ingredient.split(' ').join('_'));
-
-        if (e) {
-            console.error(e);
-            return [null, e];
-        }
-
-        if (d.ingredients[0].strAlcohol === "Yes") console.warn(`${ingredient} contains alcohol!`);
-    }
-    
-
-    if (ingredient !== "" || alcoholic !== "" || category !== "" || glass !== "") {
+    if (alcoholic !== "" || category !== "" || glass !== "") {
         url = baseUrl + '/filter.php?';
 
         const queryParams = [];
-
-        if (ingredient !== "") queryParams.push(`i=${ingredient}`);
 
         if (alcoholic === "Alcoholic") queryParams.push('a=Alcoholic');
         else if (alcoholic === "Non alcoholic") queryParams.push('a=Non_Alcoholic');
@@ -78,20 +62,14 @@ export const getRandomCocktail = async (category = "", ingredient = "", alcoholi
 
 export const getFilters = async () => {
     const [categoriesData, categoriesError] = await handleFetch(baseUrl + 'list.php?c=list');
-    const [ingredientsData, ingredientError] = await handleFetch(baseUrl + 'list.php?i=list');
     const [alcoholicData, alcoholicError] = await handleFetch(baseUrl + 'list.php?a=list');
     const [glassData, glassError] = await handleFetch(baseUrl + 'list.php?g=list');
 
-    if (categoriesError || ingredientError || alcoholicError || glassError) {
+    if (categoriesError || alcoholicError || glassError) {
         const errors = [];
         if (categoriesError) {
             console.error(categoriesError);
             errors.push(categoriesError);
-        }
-
-        if (ingredientError) {
-            console.error(ingredientError);
-            errors.push(ingredientError);
         }
 
         if (alcoholicError) {
@@ -108,9 +86,8 @@ export const getFilters = async () => {
     }
 
     const categories = categoriesData.drinks.map(c => c.strCategory);
-    const ingredients = ingredientsData.drinks.map(c => c.strIngredient1);
     const alcoholic = alcoholicData.drinks.map(c => c.strAlcoholic);
     const glasses = glassData.drinks.map(c => c.strGlass);
 
-    return [{ categories, ingredients, alcoholic, glasses }, null];
+    return [{ categories, alcoholic, glasses }, null];
 }

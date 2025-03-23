@@ -34,7 +34,7 @@ export const CocktailContainer = () => {
         const fetchRandomCocktailData = async () => {
             if (!firstLoaded || !shakingUp) return;
 
-            const [cocktailData, cocktailError] = await getRandomCocktail(cocktailCategory, cocktailIngredient, alcoholic, glass);
+            const [cocktailData, cocktailError] = await getRandomCocktail(cocktailCategory, alcoholic, glass);
 
             if (cocktailError) setError(cocktailError);
             else setCocktail(cocktailData);
@@ -44,7 +44,7 @@ export const CocktailContainer = () => {
         }
 
         fetchRandomCocktailData();
-    }, [firstLoaded, shakingUp, setShakingUp, cocktailCategory, cocktailIngredient, alcoholic, glass]);
+    }, [firstLoaded, shakingUp, setShakingUp, cocktailCategory, alcoholic, glass]);
 
     if (loading) return <div>Loading filters...</div>;
 

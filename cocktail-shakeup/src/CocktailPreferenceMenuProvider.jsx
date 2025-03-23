@@ -5,7 +5,6 @@ const CocktailPreferenceMenuContext = createContext();
 
 const CocktailPreferenceMenuProvider = ({ children }) => {
     const [cocktailCategory, setCocktailCategory] = useState("");
-    const [cocktailIngredient, setCocktailIngredient] = useState("");
     const [alcoholic, setAlcoholic] = useState("");
     const [glass, setGlass] = useState("");
 
@@ -38,8 +37,6 @@ const CocktailPreferenceMenuProvider = ({ children }) => {
         <CocktailPreferenceMenuContext.Provider value={{
             cocktailCategory,
             setCocktailCategory,
-            cocktailIngredient,
-            setCocktailIngredient,
             alcoholic,
             setAlcoholic,
             glass,

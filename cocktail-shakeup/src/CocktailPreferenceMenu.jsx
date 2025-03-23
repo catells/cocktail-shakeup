@@ -2,7 +2,7 @@ import { CocktailPreferenceMenuContext } from './CocktailPreferenceMenuProvider'
 import { useContext } from 'react';
 
 export const CocktailPreferenceMenu = ({container = false}) => {
-    const { filters, setCocktailCategory, setCocktailIngredient, setAlcoholic, setGlass, setShakingUp } = useContext(CocktailPreferenceMenuContext);
+    const { filters, setCocktailCategory, setAlcoholic, setGlass, setShakingUp } = useContext(CocktailPreferenceMenuContext);
 
     return (
         <div>
@@ -14,16 +14,7 @@ export const CocktailPreferenceMenu = ({container = false}) => {
                     </option>
                 ))}
             </select>
-
-            <select onChange={e => setCocktailIngredient(e.target.value)}>
-                <option label='Ingredient'>""</option>
-                {filters.ingredients.map(c => (
-                    <option key={ c } value={ c }>
-                        { c }
-                    </option>
-                ))}
-            </select>
-
+             
             <select onChange={e => setAlcoholic(e.target.value)}>
                 <option label='Alcohol Level'>""</option>
                 {filters.alcoholic.map(c => (
@@ -41,7 +32,8 @@ export const CocktailPreferenceMenu = ({container = false}) => {
                     </option>
                 ))}
             </select>
-
+            <br/>
+            <p>Only one filter will apply at a time.</p>
             <button onClick={() => setShakingUp(true)}>{container ? 'Not feeling it? Shake it up!' : 'Mix it up!'}</button>
         </div>
     )

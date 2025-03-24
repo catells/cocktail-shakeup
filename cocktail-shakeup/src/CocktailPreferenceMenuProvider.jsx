@@ -45,7 +45,7 @@ const CocktailPreferenceMenuProvider = ({ children }) => {
             setShakingUp,
             filters
         }}>
-            {children}
+            { children }
         </CocktailPreferenceMenuContext.Provider>
     );
 }

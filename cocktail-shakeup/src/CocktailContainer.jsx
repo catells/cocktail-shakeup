@@ -3,6 +3,10 @@ import { CocktailPreferenceMenu } from './CocktailPreferenceMenu.jsx';
 import { useState, useEffect, useContext, useRef } from 'react';
 import { getRandomCocktail } from './cocktailAdapters.js';
 
+/**
+ * Renders information of drink and collapsible menu for accessing cocktail preferences
+ * @returns `div` containing information of drink and preference menu
+ */
 export const CocktailContainer = () => {
     const { cocktailCategory, alcoholic, glass, shakingUp, setShakingUp } = useContext(CocktailPreferenceMenuContext);
     const [cocktail, setCocktail] = useState(null);

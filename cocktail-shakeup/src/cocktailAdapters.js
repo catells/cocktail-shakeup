@@ -21,12 +21,12 @@ const getDrinkData = (drinkData) => {
 }
 
 /**
- * Retrieves data of a drink using its ID
- * @param {number} id unique identifier of drink
- * @returns data of drink of the provided ID
+ * Retrieves data of a drink using its name
+ * @param {number} name name of drink
+ * @returns data of drink of the provided name
  */
-export const getCocktailById = async (id) => {
-    const [data, error] = await handleFetch(baseUrl + `lookup.php?i=${id}`);
+export const getCocktailByName = async (name) => {
+    const [data, error] = await handleFetch(baseUrl + `search.php?s=${name.split(' ').join('_')}`);
 
     if (error) {
         console.error(error);
@@ -37,7 +37,7 @@ export const getCocktailById = async (id) => {
 }
 
 /**
- * A random drink that fits at least one of the optional conditions, if any
+ * Retrieves random drink that fits at least one of the optional conditions, if any
  * @param {string} category title of category of random drink
  * @param {string} alcoholic whether the random drink should be alcoholic
  * @param {string} glass glass type of random drink
@@ -70,8 +70,8 @@ export const getRandomCocktail = async (category = "", alcoholic = "", glass = "
     }
 
     if (data.drinks.length > 1) {
-        const randomDrinkId = data.drinks[Math.floor(Math.random() * data.drinks.length)].idDrink;
-        return getCocktailById(randomDrinkId);
+        const randomDrinkName = data.drinks[Math.floor(Math.random() * data.drinks.length)].strDrink;
+        return getCocktailByName(randomDrinkName);
     }
 
     return [getDrinkData(data.drinks[0]), null];

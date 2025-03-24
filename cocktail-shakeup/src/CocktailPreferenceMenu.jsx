@@ -1,6 +1,11 @@
 import { CocktailPreferenceMenuContext } from './CocktailPreferenceMenuProvider';
 import { useContext } from 'react';
 
+/**
+ * Renders menu of preferences including dropdowns of applicable filters
+ * @param {boolean} container whether the menu is in a container or not
+ * @returns `div` containing preference menu
+ */
 export const CocktailPreferenceMenu = ({container = false}) => {
     const { filters, setCocktailCategory, setAlcoholic, setGlass, setShakingUp } = useContext(CocktailPreferenceMenuContext);
 

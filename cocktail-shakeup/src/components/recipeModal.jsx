@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { rendering } from "./renderingRecipe";
+import { ModalRendering } from "./renderingRecipe";
 import "./Modal.css";
 
-export function Modal({ open, children, onClose }) {
+export function Modal({ open, children, onClose, mealPrep }) {
   if (!open) return null;
 
   return (
@@ -11,7 +11,7 @@ export function Modal({ open, children, onClose }) {
       <div id="overlay">
         <button id="closing" onClick={onClose}>
           <p>Click me to close!</p>
-          {rendering()}
+          <ModalRendering mealprep={mealPrep}></ModalRendering>
         </button>
         {children}
       </div>

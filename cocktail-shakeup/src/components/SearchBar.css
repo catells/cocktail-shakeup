@@ -15,10 +15,10 @@
 
 input {
   background-color: transparent;
-  border: none;
+  border: black;
   height: 100%;
   font-size: 1.25rem;
-  width: 100%;
+  width: 20%;
   /* margin: 5px; */
 }
 

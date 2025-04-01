@@ -1,5 +1,5 @@
 .result-list {
-  width: 250px;
+  width: 50px;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -9,8 +9,7 @@
   max-height: 300px;
   overflow-y: scroll;
   position: fixed;
-  position: fixed;
-  top: 17px;
+  top: 0;
   right: 10px;
   z-index: 1000;
 }

@@ -11,7 +11,7 @@ export const SearchBar = ({ setResults }) => {
     const [result, error] = await fetchData(
       `https://www.themealdb.com/api/json/v1/1/search.php?s=${input}`
     );
-    console.log("jandle", result);
+    // console.log("jandle", result);
     setResults(result.meals || []);
   };
 

@@ -7,6 +7,6 @@ export function picking() {
     console.log("clicked");
     const foodName = img.getAttribute("alt");
     const mealName = getRecipe(foodName);
-    Modal(mealName);
+    // Modal(mealName);
   });
 }

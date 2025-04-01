@@ -9,8 +9,8 @@ export const getRecipe = (foodName) => {
         throw Error(`Fetch failed. ${response.status} ${response.statusText}`);
       }
 
-      const readingPromise = response.json();
-      return readingPromise;
+      const foodPromise = response.json();
+      return foodPromise;
     })
     .then((data) => {
       if (data.length === 0) {
@@ -151,6 +151,7 @@ export const getRecipe = (foodName) => {
         : null;
 
       console.log(mealprep);
+      return mealprep;
     })
     .catch((err) => {
       // 6. Handle Errors

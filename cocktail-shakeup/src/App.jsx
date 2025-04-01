@@ -17,6 +17,7 @@ import { SearchBar } from "./components/dropdownFetch.jsx";
 import React, { useState, useEffect } from "react";
 import { picking } from "./components/gettingRecipeName";
 import { Modal } from "./components/recipeModal";
+import { getRecipe } from "./components/recipeSearch-fetch";
 import "./components/Modal.css";
 import "./App.css";
 
@@ -24,6 +25,7 @@ function App() {
   const [meals, setMeals] = useState([]);
   const [results, setResults] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [mealPrep, setMealPrep] = useState({});
 
   useEffect(() => {
     fetch("https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken")
@@ -45,10 +47,13 @@ function App() {
       });
   }, []);
 
-  const handleClick = () => {
-    {
-      picking();
-    }
+  const handleClick = async (e) => {
+    const img = e.target.closest(".photos");
+    console.log("clicked");
+    const foodName = img.getAttribute("alt");
+    const mealPrepData = await getRecipe(foodName);
+    setMealPrep(mealPrepData);
+    setIsOpen(true);
   };
 
   return (
@@ -74,9 +79,11 @@ function App() {
         ))}
       </ul>
       {/* modal */}
-      <button onClick={() => setIsOpen(true)}>Open Modal</button>
-      <Modal open={isOpen} onClose={() => setIsOpen(false)}></Modal>
-      <div id="Modal"></div>
+      <Modal
+        mealPrep={mealPrep}
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+      ></Modal>
     </div>
   );
 }

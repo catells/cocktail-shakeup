@@ -1,35 +1,84 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// const App = () => {
+//   return (
+//     <div className="App">
+//       <Routes>
+//         //every route will go here
+//         <Route path="/" element={<homePage />} />
+//         <Route path="/main" element={<mainPage />} />
+//       </Routes>
+//     </div>
+//   );
+// };
+
+// export default App;
+
+import { SearchResult } from "./components/SearchResultLists";
+import { SearchBar } from "./components/dropdownFetch.jsx";
+import React, { useState, useEffect } from "react";
+import { picking } from "./components/gettingRecipeName";
+import { Modal } from "./components/recipeModal";
+import "./components/Modal.css";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [meals, setMeals] = useState([]);
+  const [results, setResults] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    fetch("https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Fetch failed. ${response.status} ${response.statusText}`
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data != 0) {
+          setMeals(data.meals);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleClick = () => {
+    {
+      picking();
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      {/* !!! header !!! */}
+      <header>Cocktail Shakeup</header>
+      {/* search bar */}
+      <div className="search-bar">
+        <SearchBar setResults={setResults} />
+        <SearchResult results={results} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      {/* main page meals shown */}
+      <ul id="meals" onClick={handleClick}>
+        {meals.map((meal, id) => (
+          <il key={id}>
+            <img
+              src={meal.strMealThumb}
+              alt={meal.strMeal}
+              className="photos"
+            />
+            <p>{meal.strMeal}</p>
+          </il>
+        ))}
+      </ul>
+      {/* modal */}
+      <button onClick={() => setIsOpen(true)}>Open Modal</button>
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}></Modal>
+      <div id="Modal"></div>
+    </div>
+  );
 }
 
-export default App
+export default App;

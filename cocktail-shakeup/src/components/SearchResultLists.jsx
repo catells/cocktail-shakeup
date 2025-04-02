@@ -1,5 +1,5 @@
 import React from "react";
-import { Search } from "../SearchResult";
+import { Search } from "./SearchResult";
 import "./SearchBar.css";
 
 export const SearchResult = ({ results }) => {

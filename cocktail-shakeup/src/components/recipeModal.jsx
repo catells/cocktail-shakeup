@@ -12,6 +12,11 @@ export function Modal({ open, children, onClose, mealPrep }) {
         <button id="closing" onClick={onClose}>
           <p>Click me to close!</p>
           <ModalRendering mealprep={mealPrep}></ModalRendering>
+          <>
+            <CocktailPreferenceMenuProvider>
+              <CocktailContainer />
+            </CocktailPreferenceMenuProvider>
+          </>
         </button>
         {children}
       </div>

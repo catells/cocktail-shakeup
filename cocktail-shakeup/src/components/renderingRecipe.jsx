@@ -1,6 +1,3 @@
-import { picking } from "./gettingRecipeName";
-import { getRecipe } from "./recipeSearch-fetch.js";
-
 export function ModalRendering({ mealprep }) {
   return (
     <>

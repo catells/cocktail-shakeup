@@ -1,21 +1,9 @@
-// const App = () => {
-//   return (
-//     <div className="App">
-//       <Routes>
-//         //every route will go here
-//         <Route path="/" element={<homePage />} />
-//         <Route path="/main" element={<mainPage />} />
-//       </Routes>
-//     </div>
-//   );
-// };
-
-// export default App;
-
 import { SearchResult } from "./components/SearchResultLists";
 import { SearchBar } from "./components/dropdownFetch.jsx";
 import React, { useState, useEffect } from "react";
-import { picking } from "./components/gettingRecipeName";
+import { CocktailPreferenceMenuProvider } from "./CocktailPreferenceMenuProvider.jsx";
+import { CocktailPreferenceMenu } from "./CocktailPreferenceMenu.jsx";
+import { CocktailContainer } from "./CocktailContainer.jsx";
 import { Modal } from "./components/recipeModal";
 import { getRecipe } from "./components/recipeSearch-fetch";
 import "./components/Modal.css";
@@ -75,17 +63,26 @@ function App() {
         <SearchBar setResults={setResults} />
         <SearchResult results={results} />
       </div>
+      {/* preference menu shown */}
+      <CocktailPreferenceMenuProvider>
+        <CocktailPreferenceMenu />
+      </CocktailPreferenceMenuProvider>
       {/* main page meals shown */}
       <ul id="meals" onClick={handleClick}>
         {meals.map((meal, id) => (
-          <il key={id}>
+          <li key={id}>
             <img
               src={meal.strMealThumb}
               alt={meal.strMeal}
               className="photos"
             />
             <p>{meal.strMeal}</p>
-          </il>
+            <>
+              <CocktailPreferenceMenuProvider>
+                <CocktailContainer />
+              </CocktailPreferenceMenuProvider>
+            </>
+          </li>
         ))}
       </ul>
       {/* modal */}

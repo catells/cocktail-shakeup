@@ -14,8 +14,7 @@ export const getRecipe = (foodName) => {
     newW.pop();
     searching = newW.join("");
   }
-
-  console.log(searching);
+  
   return fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${searching}`
   )

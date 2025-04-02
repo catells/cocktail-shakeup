@@ -10,9 +10,8 @@
 
 #modal {
   overflow-y: scroll;
-  max-width: 200px;
-  display: flex;
-  align-items: center;
+  max-width: 250px;
+  right: 200px;
 }
 
 #overlay {
@@ -30,21 +29,19 @@
 }
 
 #closing {
+  align-self: center;
   background-color: white;
-  min-width: 2000px;
+  min-width: 800px;
   overflow-y: scroll;
 }
 
 #recipeInfo {
-  display: flex;
-  width: 900px;
+  width: 300px;
   height: 100px;
-  padding-right: -10px;
 }
 
 #drinkInfo {
-  display: inline-block;
-  width: 200px;
-  height: 100px;
-  padding-left: -10px;
+  width: 300px;
+  height: 1000px;
+  padding-left: 350px;
 }

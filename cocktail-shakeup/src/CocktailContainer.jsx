@@ -62,7 +62,7 @@ export const CocktailContainer = () => {
     return (
         <div>
             <h2>{ cocktail.drink }</h2>
-            <img src={cocktail.thumb} alt={ `Image of ${cocktail.drink}`} />
+            <img className='cocktail-img' src={cocktail.thumb} alt={ `Image of ${cocktail.drink}`} />
             <h4>Category: { cocktail.category }</h4>
             <h4>Alcohol Level: { cocktail.alcoholic }</h4>
             <h4>Glass: { cocktail.glass }</h4>

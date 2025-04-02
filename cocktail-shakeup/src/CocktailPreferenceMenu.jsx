@@ -39,7 +39,7 @@ export const CocktailPreferenceMenu = ({container = false}) => {
             </select>
             <br/>
             <p>Only one filter will apply at a time.</p>
-            <button onClick={() => setShakingUp(true)}>{container ? 'Not feeling it? Shake it up!' : 'Mix it up!'}</button>
+            <button className='menu-button' onClick={() => setShakingUp(true)}>{container ? 'Not feeling it? Shake it up!' : 'Mix it up!'}</button>
         </div>
     )
 }

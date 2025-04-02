@@ -53,7 +53,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div id="main">
       {/* !!! header !!! */}
       <header>Cocktail Shakeup</header>
       {/* search bar */}

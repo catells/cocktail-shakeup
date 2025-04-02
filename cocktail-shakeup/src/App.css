@@ -2,13 +2,13 @@
   background-color: gray;
 }
 
-#theme-button {
+#theme-button, .menu_button {
   max-width: 150px;
   background-color: pink;
 }
 
-#theme-button .dark-mode {
-  background-color: white;
+.dark-mode #theme-button, .dark-mode .menu_button {
+    background-color: white;
 }
 
 #modal {

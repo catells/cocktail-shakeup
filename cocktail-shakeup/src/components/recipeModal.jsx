@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { ModalRendering } from "./renderingRecipe";
+import { CocktailPreferenceMenuProvider } from "./CocktailPreferenceMenuProvider.jsx";
+import { CocktailContainer } from "./CocktailContainer.jsx";
 import "./Modal.css";
 
 export function Modal({ open, children, onClose, mealPrep }) {

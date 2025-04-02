@@ -4,102 +4,72 @@ import { getRecipe } from "./recipeSearch-fetch.js";
 export function ModalRendering({ mealprep }) {
   return (
     <>
-      <h1 id="modal-head">Recipe Name:</h1>
-      {mealprep.meal}
-      <p>Category:</p>
-      {mealprep.category}
-      <p>Type:</p>
-      {mealprep.type}
-      <img src={mealprep.photo} />
-      <img src={mealprep.video} />
-      <h2>steps</h2>
-      {mealprep.instructions}
+      <h1 id="modal-head">Recipe Name: {mealprep.meal}</h1>
+      <p>Category: {mealprep.category}</p>
+      <p>Type: {mealprep.type}</p>
+      <img src={mealprep.photo} id="modal-pics" />
+      <iframe height="480" width="500" src={mealprep.video} />
+      <h2> Steps: {mealprep.instructions}</h2>
       <ul>
-        <ul>
-          Ingridient:
-          {mealprep.ingredient1}
-          <li>Measurement:</li>
-        </ul>
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient1}
-        <li>Measurement:</li>
-        {mealprep.strMeasure1}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient2}
-        <li>Measurement:</li>
-        {mealprep.strMeasure2}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient3}
-        <li>Measurement:</li>
-        {mealprep.strMeasure3}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient4}
-        <li>Measurement:</li>
-        {mealprep.strMeasure4}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient5}
-        <li>Measurement:</li>
-        {mealprep.strMeasure5}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient6}
-        <li>Measurement:</li>
-        {mealprep.strMeasure6}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient7}
-        <li>Measurement:</li>
-        {mealprep.strMeasure7}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient8}
-        <li>Measurement:</li>
-        {mealprep.strMeasure8}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient9}
-        <li>Measurement:</li>
-        {mealprep.strMeasure9}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient10}
-        <li>Measurement:</li>
-        {mealprep.strMeasure10}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient11}
-        <li>Measurement:</li>
-        {mealprep.strMeasure11}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient12}
-        <li>Measurement:</li>
-        {mealprep.strMeasure12}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient13}
-        <li>Measurement:</li>
-        {mealprep.strMeasure13}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient14}
-        <li>Measurement:</li>
-        {mealprep.strMeasure14}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient15}
-        <li>Measurement:</li>
-        {mealprep.strMeasure15}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient16}
-        <li>Measurement:</li>
-        {mealprep.strMeasure16}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient17}
-        <li>Measurement:</li>
-        {mealprep.strMeasure17}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient18}
-        <li>Measurement:</li>
-        {mealprep.strMeasure18}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient19}
-        <li>Measurement:</li>
-        {mealprep.strMeasure19}
-        <ul>Ingridient:</ul>
-        {mealprep.ingredient20}
-        <li>Measurement:</li>
-        {mealprep.strMeasure20}
+        <ul className="ingredient">Ingredient: {mealprep.ingredient1}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure1}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient2}</ul>
+        <p className="ingre"> Measurement: {mealprep.strMeasure2}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient3}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure3}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient4}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure4}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient5}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure5}</p>
+
+        <ul className="ingredient"> Ingredient: {mealprep.ingredient6}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure6}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient7}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure7}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient8}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure8}</p>
+
+        <ul className="ingredient">IIngredient: {mealprep.ingredient9}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure9}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient10}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure10}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient11}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure11}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient12}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure12}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient13}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure13}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient14}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure14}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient15}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure15}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient16}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure16}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient17}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure17}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient18}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure18}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient19}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure19}</p>
+
+        <ul className="ingredient">Ingredient: {mealprep.ingredient20}</ul>
+        <p className="ingre">Measurement: {mealprep.strMeasure20}</p>
       </ul>
     </>
   );

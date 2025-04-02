@@ -14,6 +14,6 @@
   z-index: 1000;
 }
 
-.result-list li:hover {
+.result-list:hover {
   background-color: gray;
 }

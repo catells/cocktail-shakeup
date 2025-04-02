@@ -10,7 +10,7 @@ export function ModalRendering({ mealprep }) {
       {mealprep.category}
       <p>Type:</p>
       {mealprep.type}
-      <img src={mealprep.photo} />
+      <img src={mealprep.photo} id="modal-pic" />
       <img src={mealprep.video} />
       <h2>steps</h2>
       {mealprep.instructions}

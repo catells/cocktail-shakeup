@@ -10,6 +10,7 @@
 
 #Modal.open {
   max-width: 950px;
+  max-height: 750px;
 }
 
 #overlay {

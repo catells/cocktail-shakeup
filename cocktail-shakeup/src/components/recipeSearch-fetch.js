@@ -1,6 +1,19 @@
 export const getRecipe = (foodName) => {
-  let searching = foodName.split(" ").join("+");
-  console.log(searching);
+  let searching = " ";
+  let count = foodName.split(" ");
+  let word = count.length - 1;
+
+  if (word === 0) {
+    searching = foodName;
+  } else {
+    searching = foodName.split(" ").join("+");
+  }
+
+  if (searching[searching.length - 1] === "+") {
+    let newW = searching.split("");
+    newW.pop();
+    searching = newW.join("");
+  }
   return fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${searching}`
   )

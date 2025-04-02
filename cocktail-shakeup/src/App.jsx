@@ -1,9 +1,9 @@
 import { SearchResult } from "./components/SearchResultLists";
 import { SearchBar } from "./components/dropdownFetch.jsx";
 import React, { useState, useEffect } from "react";
-import { CocktailPreferenceMenuProvider } from './CocktailPreferenceMenuProvider.jsx';
-import { CocktailPreferenceMenu } from './CocktailPreferenceMenu.jsx';
-import { CocktailContainer } from './CocktailContainer.jsx';
+import { CocktailPreferenceMenuProvider } from "./CocktailPreferenceMenuProvider.jsx";
+import { CocktailPreferenceMenu } from "./CocktailPreferenceMenu.jsx";
+import { CocktailContainer } from "./CocktailContainer.jsx";
 import { Modal } from "./components/recipeModal";
 import { getRecipe } from "./components/recipeSearch-fetch";
 import "./components/Modal.css";
@@ -37,11 +37,21 @@ function App() {
 
   const handleClick = async (e) => {
     const img = e.target.closest(".photos");
-    console.log("clicked");
-    const foodName = img.getAttribute("alt");
-    const mealPrepData = await getRecipe(foodName);
-    setMealPrep(mealPrepData);
-    setIsOpen(true);
+    const name = e.target.closest(".search-result");
+
+    if (img) {
+      const foodName = img.getAttribute("alt");
+      console.log(foodName);
+      const mealPrepData = await getRecipe(foodName);
+      setMealPrep(mealPrepData);
+      setIsOpen(true);
+    } else if (name) {
+      console.log(name.textContent);
+      const mealName = name.textContent;
+      const mealPrepData = await getRecipe(mealName);
+      setMealPrep(mealPrepData);
+      setIsOpen(true);
+    }
   };
 
   return (
@@ -49,7 +59,7 @@ function App() {
       {/* !!! header !!! */}
       <header>Cocktail Shakeup</header>
       {/* search bar */}
-      <div className="search-bar">
+      <div className="search-bar" onClick={handleClick}>
         <SearchBar setResults={setResults} />
         <SearchResult results={results} />
       </div>
@@ -77,6 +87,7 @@ function App() {
       </ul>
       {/* modal */}
       <Modal
+        id="modal"
         mealPrep={mealPrep}
         open={isOpen}
         onClose={() => setIsOpen(false)}

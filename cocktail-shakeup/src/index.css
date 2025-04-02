@@ -33,3 +33,32 @@ header {
   grid-template-rows: repeat(4, 5vw);
   grid-gap: 350px;
 }
+
+#modal-pic {
+  max-width: 300px;
+}
+
+.result-list {
+  width: 250px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 8px #ddd;
+  border-radius: 10px;
+  margin-top: 3rem;
+  max-height: 300px;
+  overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  right: 10px;
+  z-index: 1000;
+}
+
+.search-result:hover {
+  background-color: gray;
+}
+
+.search-result {
+  padding: 10px;
+  color: black;
+}

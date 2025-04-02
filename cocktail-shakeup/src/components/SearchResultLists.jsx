@@ -1,4 +1,5 @@
 import React from "react";
+import { Search } from "../SearchResult";
 import "./SearchBar.css";
 
 export const SearchResult = ({ results }) => {
@@ -7,7 +8,8 @@ export const SearchResult = ({ results }) => {
   return (
     <div className="result-list">
       {data.map((result, index) => {
-        return <ul key={index}> {result.strMeal} </ul>;
+        return <Search result={result} key={index} />;
+        // <ul key={index}> {result.strMeal} </ul>
       })}
     </div>
   );

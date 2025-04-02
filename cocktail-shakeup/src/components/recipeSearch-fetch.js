@@ -1,5 +1,12 @@
 export const getRecipe = (foodName) => {
-  let searching = foodName.split(" ").join("+");
+  let searching = " ";
+  let count = foodName.split(" ");
+  let word = count.length - 1;
+  if (word === 1) {
+    searching = foodName;
+  } else {
+    searching = foodName.split(" ").join("+");
+  }
   console.log(searching);
   return fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${searching}`

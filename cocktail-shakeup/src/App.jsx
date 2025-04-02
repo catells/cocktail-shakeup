@@ -90,6 +90,7 @@ function App() {
       </ul>
       {/* modal */}
       <Modal
+        id="modal"
         mealPrep={mealPrep}
         open={isOpen}
         onClose={() => setIsOpen(false)}

@@ -34,6 +34,10 @@ header {
   grid-gap: 350px;
 }
 
+.dark-mode #modal {
+  background-color: darkcyan;
+}
+
 #modal-pic {
   max-width: 300px;
 }

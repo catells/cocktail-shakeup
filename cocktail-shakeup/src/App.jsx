@@ -3,7 +3,6 @@ import { SearchBar } from "./components/dropdownFetch.jsx";
 import React, { useState, useEffect } from "react";
 import { CocktailPreferenceMenuProvider } from "./CocktailPreferenceMenuProvider.jsx";
 import { CocktailPreferenceMenu } from "./CocktailPreferenceMenu.jsx";
-import { CocktailContainer } from "./CocktailContainer.jsx";
 import { Modal } from "./components/recipeModal";
 import { getRecipe } from "./components/recipeSearch-fetch";
 import "./components/Modal.css";
@@ -63,9 +62,8 @@ function App() {
         <SearchBar setResults={setResults} />
         <SearchResult results={results} />
       </div>
-      {/* preference menu shown */}
       <CocktailPreferenceMenuProvider>
-        <CocktailPreferenceMenu />
+        <CocktailPreferenceMenu/>      
       </CocktailPreferenceMenuProvider>
       {/* main page meals shown */}
       <ul id="meals" onClick={handleClick}>
@@ -77,11 +75,6 @@ function App() {
               className="photos"
             />
             <p>{meal.strMeal}</p>
-            <>
-              <CocktailPreferenceMenuProvider>
-                <CocktailContainer />
-              </CocktailPreferenceMenuProvider>
-            </>
           </li>
         ))}
       </ul>

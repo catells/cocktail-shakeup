@@ -25,6 +25,10 @@ header {
   width: 300px;
 }
 
+.cocktail-img {
+  max-width: 300px;
+}
+
 #meals {
   /* align-content: center; */
   display: grid;
@@ -68,8 +72,9 @@ header {
   color: black;
 }
 
-#Modal.open {
-  max-width: 450px;
+#Modal {
+  overflow-y: scroll;
+  max-width: 200px;
 }
 
 #overlay {
@@ -84,4 +89,8 @@ header {
 
 #closing {
   background-color: lightblue;
+}
+
+#steps {
+  font-size: 10px;
 }

@@ -10,3 +10,8 @@
 #theme-button .dark-mode {
   background-color: white;
 }
+
+#modal {
+  overflow-y: scroll;
+  max-width: 200px;
+}

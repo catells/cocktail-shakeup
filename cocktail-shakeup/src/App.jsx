@@ -5,7 +5,6 @@ import { CocktailPreferenceMenuProvider } from "./CocktailPreferenceMenuProvider
 import { CocktailPreferenceMenu } from "./CocktailPreferenceMenu.jsx";
 import { Modal } from "./components/recipeModal";
 import { getRecipe } from "./components/recipeSearch-fetch";
-import "./components/Modal.css";
 import "./App.css";
 
 function App() {
@@ -63,19 +62,19 @@ function App() {
         <SearchResult results={results} />
       </div>
       <CocktailPreferenceMenuProvider>
-        <CocktailPreferenceMenu/>      
+        <CocktailPreferenceMenu />
       </CocktailPreferenceMenuProvider>
       {/* main page meals shown */}
       <ul id="meals" onClick={handleClick}>
         {meals.map((meal, id) => (
-          <li key={id}>
+          <ul key={id}>
             <img
               src={meal.strMealThumb}
               alt={meal.strMeal}
               className="photos"
             />
             <p>{meal.strMeal}</p>
-          </li>
+          </ul>
         ))}
       </ul>
       {/* modal */}

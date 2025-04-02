@@ -8,8 +8,11 @@
   z-index: 1000;
 } */
 
-#Modal.open {
-  max-width: 550px;
+#modal {
+  overflow-y: scroll;
+  max-width: 200px;
+  display: flex;
+  align-items: center;
 }
 
 #overlay {
@@ -22,6 +25,26 @@
   z-index: 1000;
 }
 
+.cocktail-img {
+  max-width: 200px;
+}
+
 #closing {
-  background-color: lightblue;
+  background-color: white;
+  min-width: 2000px;
+  overflow-y: scroll;
+}
+
+#recipeInfo {
+  display: flex;
+  width: 900px;
+  height: 100px;
+  padding-right: -10px;
+}
+
+#drinkInfo {
+  display: inline-block;
+  width: 200px;
+  height: 100px;
+  padding-left: -10px;
 }

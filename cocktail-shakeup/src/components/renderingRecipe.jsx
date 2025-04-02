@@ -5,8 +5,8 @@ export function ModalRendering({ mealprep }) {
       <p>Category: {mealprep.category}</p>
       <p>Type: {mealprep.type}</p>
       <img src={mealprep.photo} id="modal-pics" />
-      <iframe height="480" width="500" src={mealprep.video} />
-      <h2> Steps: {mealprep.instructions}</h2>
+      <iframe height="250" width="250" id="video" src={mealprep.video} />
+      <h2 id="steps"> Steps: {mealprep.instructions}</h2>
       <ul>
         <ul className="ingredient">Ingredient: {mealprep.ingredient1}</ul>
         <p className="ingre">Measurement: {mealprep.strMeasure1}</p>
